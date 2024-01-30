@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Numerics;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,12 +24,16 @@ namespace Защита_Информаций
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            /*
             string inputText = TextBoxContent.Text;
             string key = TextBoxKey.Text;
             Lab1 test = new Lab1(inputText, key);
             inputText = TextBoxContent.Text;
             EncodedText.Text = test.GetEncodeString();
             DecodedText.Text = test.GetDecodeSring();
+            */
+            RSA k = new RSA();
+            BigInteger o = k.RSA_1();
         }
     }
 }
