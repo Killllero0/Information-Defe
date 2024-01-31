@@ -33,7 +33,6 @@ namespace Защита_Информаций
             DecodedText.Text = test.GetDecodeSring();
             */
             RSA k = new RSA();
-            BigInteger o = k.RSA_1();
         }
     }
 }
