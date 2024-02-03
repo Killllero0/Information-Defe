@@ -14,17 +14,35 @@ namespace Защита_Информаций
         private string _encodeString = string.Empty;
         private string _decodeString = string.Empty;
         private string _key = string.Empty;
+        private bool _operation = true;
         private readonly string _alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
         Dictionary<char, string> _data = new Dictionary<char, string>() { };
 
-        public Lab1(string inputString, string key)
+        public Lab1(string inputString, string key, bool type)
         {
-            _inputString = inputString.ToLower();
-            _key = key.ToLower();
-            CreateAlphabet();
-            Encode();
-            Decode();
+            // Если операция зашифровать текст
+            if (type == true)
+            {
+                _inputString = inputString.ToLower();
+                _key = key.ToLower().Replace(" ", "");
+                CreateAlphabet();
+                Encode();
+                Decode();
+            }
+            else
+            {
+                _operation = false;
+                _inputString = inputString.ToLower();
+                _key = key.ToLower();
+                CreateAlphabet();
+                _encodeString = inputString;
+                Decode();
+                Encode();
+            }
+            
         }
+
+
         private void Encode()
         {
             string encodeString = string.Empty;
@@ -90,6 +108,13 @@ namespace Защита_Информаций
         public string GetDecodeSring()
         {
             return _decodeString;
+        }
+        public string getData()
+        {
+            if (_operation == true)
+                return _encodeString;
+            else
+                return _decodeString;
         }
     }
 }

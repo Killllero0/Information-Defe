@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Защита_Информаций"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid ShowGridLines="True">
+    <Grid Name="MyGrid" ShowGridLines="True">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -15,32 +15,50 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            
-                <Label>Входные данные</Label>
+        <DockPanel Grid.Row="0" Grid.Column="0">
+            <Label FontSize="14" HorizontalAlignment="Center" DockPanel.Dock="Top">Операции с текстом</Label>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                <RadioButton FontSize="14" GroupName="OperationType" Margin="10, 2" x:Name="CryptText" IsChecked="True">
+                    Зашифровать текст
+                </RadioButton>
+                <RadioButton FontSize="14" GroupName="OperationType" Margin="10, 2">
+                    Расшифровать текст
+                </RadioButton>
+            </StackPanel>
+            <Label FontSize="14" HorizontalAlignment="Center" DockPanel.Dock="Top">Ключ шифрования</Label>
+            <TextBox x:Name="KeyBox" DockPanel.Dock="Top" Margin="10, 2"></TextBox>
+            <Button DockPanel.Dock="Top" Margin="10, 2" Click="Button_Click">Запуск</Button>
+            <Label FontSize="14" HorizontalAlignment="Center" DockPanel.Dock="Top">Исходный текст</Label>
+            <TextBox x:Name="InputBox"
+                MaxWidth="{Binding ActualWidth, ElementName=MyGrid}" 
+                     MaxHeight="{Binding ActualHeight, ElementName=MyGrid}"
+                     TextWrapping="Wrap" AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     DockPanel.Dock="Bottom"
+            />
+        </DockPanel>
 
-                <TextBox MinHeight="100" HorizontalScrollBarVisibility="Auto" x:Name="TextBoxContent" AcceptsReturn="True" MaxHeight="100" ScrollViewer.CanContentScroll="True">
-
-                </TextBox>
-                <Label>Ключ шифрования</Label>
-                <TextBox x:Name="TextBoxKey">
-
-                </TextBox>
-            <Button Click="Button_Click">Запуск</Button>
-
-        </StackPanel>
-        <UniformGrid Grid.Column="0" Grid.Row="1" Columns="3">
+        <UniformGrid Columns="2" Grid.Row="1" Grid.Column="0">
             <DockPanel>
-                <Label DockPanel.Dock="Top">Начальный текст</Label>
-                <TextBox x:Name="InputText" AcceptsReturn="True"></TextBox>
+                <Label FontSize="14" DockPanel.Dock="Top" HorizontalAlignment="Center">Исходный текст</Label>
+                <TextBox x:Name="originalText"
+                    TextWrapping="Wrap" AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto"
+                        DockPanel.Dock="Bottom"
+                         Margin="3, 0"
+                />
             </DockPanel>
             <DockPanel>
-                <Label DockPanel.Dock="Top">Шифрованный текст</Label>
-                <TextBox x:Name="EncodedText" AcceptsReturn="True"></TextBox>
-            </DockPanel>
-            <DockPanel>
-                <Label DockPanel.Dock="Top">Расшифрованный текст</Label>
-                <TextBox x:Name="DecodedText" AcceptsReturn="True"></TextBox>
+                <Label FontSize="14" DockPanel.Dock="Top" HorizontalAlignment="Center">Полученный текст</Label>
+                <TextBox x:Name="decodedText"
+                    TextWrapping="Wrap" AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto"
+                    DockPanel.Dock="Bottom"
+                    Margin="3, 0"
+                />
             </DockPanel>
         </UniformGrid>
     </Grid>

@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Printing;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,15 +25,18 @@ namespace Защита_Информаций
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            string inputText = TextBoxContent.Text;
-            string key = TextBoxKey.Text;
-            Lab1 test = new Lab1(inputText, key);
-            inputText = TextBoxContent.Text;
-            EncodedText.Text = test.GetEncodeString();
-            DecodedText.Text = test.GetDecodeSring();
-            */
-            RSA k = new RSA();
+            string text = InputBox.Text.ToLower();
+            string key = KeyBox.Text.ToLower();
+            bool operation = false;
+            // Зашифровать
+            if (CryptText.IsChecked == true)
+            {
+                operation = true;
+            }
+            Lab1 code = new Lab1(text, key, operation);
+            decodedText.Text = code.getData();
+            originalText.Text = text;
+
         }
     }
 }
